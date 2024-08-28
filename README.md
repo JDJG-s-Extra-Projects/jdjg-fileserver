@@ -8,5 +8,7 @@ Next, it needs to have the og name, localized name if it's nintendo switch captu
 There needs to be a private password + specific source for where uploads come from.
 Mime type, name, og_name, and more need to be stored in the data.
 
+Some form of compression, re-encoding should be done before going into the database to bring the size down.
+
 It needs to sort by date (very important)
 I am not sure about the rest.
