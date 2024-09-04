@@ -14,4 +14,3 @@ for file_type, file_list in biggest_files.items():
     for file in file_list[:3]:
         print(f"{file}: {file.stat().st_size} bytes")
     print()
-    
