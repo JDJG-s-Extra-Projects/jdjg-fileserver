@@ -6,15 +6,12 @@ files = current_directory.rglob("*")
 biggest_files = {}
 for file in files:
     if file.is_file():
-        if not biggest_files.get(file.suffix):
-            biggest_files[file.suffix] = []
+        biggest_files.setdefault(file.suffix, []).append(file)
 
-        biggest_files[file.suffix].append(file)
-
-for file_type in biggest_files:
-    sorted_files = biggest_files[file_type]
-    sorted_files.sort(key=lambda path: path.stat().st_size)
-    print(f"{file_type} files")
-    for file in sorted_files[-3:]:
-        print(f"{file}: {round(file.stat().st_size/1000000, 2)} megabytes")
-    print("\n")
+for file_type, file_list in biggest_files.items():
+    file_list.sort(key=lambda path: path.stat().st_size, reverse=True)
+    print(f"{file_type} files:")
+    for file in file_list[:3]:
+        print(f"{file}: {file.stat().st_size} bytes")
+    print()
+    
